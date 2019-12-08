@@ -63,6 +63,11 @@ namespace CoreAPI.Models
             return (Id.ToString() + "," + Email + "," + GivenName + "," + FamilyName + "," + Created.ToString());
         }
 
+        public string UserContact()
+        {
+            return (Id.ToString() + "," + Email + "," + GivenName + "," + FamilyName);
+        }
+
         public string[] UserStringArray()
         {
             return new string[] { Id.ToString(), Email, GivenName, FamilyName, Created.ToString() };

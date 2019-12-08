@@ -13,13 +13,22 @@ namespace CoreAPI.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private static readonly List<User> _users = new List<User>
+        private readonly List<User> _users = new List<User>
         {
-            new User(new Guid("940aa289-95f4-4424-b183-a9599f1ddb1d"), "DeanFarrington@outlook.com", "Dean", "Farrington", DateTime.Now),
-            new User(new Guid("c3be39f8-1b08-4e38-a3ea-67e29d673b54"), "MadeUpEmail1@live.co.uk", "Fake", "User", DateTime.Now),
-            new User(new Guid("5bc171dd-951a-45d0-a4bc-19f53dcf44f6"), "AnotherMadeUpAccount@helloworld.com", "Test", "Account", DateTime.Now),
-            new User(new Guid("0471ef4f-8ab9-4b6a-93dc-c9f3044fa21b"), "MadeUpEmail2@aol.com", "Admin", "Admin", DateTime.Now),
+            new User(new Guid("940aa289-95f4-4424-b183-a9599f1ddb1d"), "DeanFarrington@outlook.com", "Dean", "Farrington", new DateTime(1993,03,12)),
+            new User(new Guid("c3be39f8-1b08-4e38-a3ea-67e29d673b54"), "MadeUpEmail1@live.co.uk", "Fake", "User", new DateTime(2019,12,25)),
+            new User(new Guid("5bc171dd-951a-45d0-a4bc-19f53dcf44f6"), "AnotherMadeUpAccount@helloworld.com", "Test", "Account", new DateTime(2009,08,17)),
+            new User(new Guid("0471ef4f-8ab9-4b6a-93dc-c9f3044fa21b"), "MadeUpEmail2@aol.com", "Admin", "Admin", new DateTime(2019,12,24)),
         };
+
+        public List<User> Users
+        {
+            get
+            {
+                return _users;
+            }
+            set { }
+        }
 
         // GET: api/User
         [HttpGet]
@@ -90,7 +99,7 @@ namespace CoreAPI.Controllers
 
             if(!userExists)
             {
-                _users.Add(new User(Guid.NewGuid(), email, givenName, familyName, DateTime.Now));
+                _users.Add(new User(idToGuid, email, givenName, familyName, DateTime.Now));
             }
         }
 
